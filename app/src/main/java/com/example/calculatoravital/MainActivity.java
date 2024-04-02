@@ -13,7 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-    EditText ed;double  number1;double number2;String sign;String st;String s;
+    EditText ed;double  number1;double number2;String sign;String st;String s;double number3;
     Button btn ;    Button btn1 ;    Button btn2 ;    Button btn3 ;    Button btn4 ;    Button btn5;    Button btn6 ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         st=ed.getText().toString();
         number1 = Double.parseDouble(st);
         ed.getText().clear();
+
     }
 
 
@@ -75,8 +76,11 @@ public class MainActivity extends AppCompatActivity {
             number1 = number1*number2;
         st =""+number1;}
         if(sign.equals("/")) {
+            if (number1==0)
+                st=" mistake";
+            else{
             number1 = number1 / number2;
-            st =""+number1;}
+            st =""+number1;}}
         ed.setText(st);
         s= st;
     }
