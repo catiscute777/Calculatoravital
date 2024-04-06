@@ -13,7 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-    EditText ed;double  number1;double number2;String sign;String st;String s;double number3;
+    EditText ed;double  number1;double number2;String sign;String st;String s;double number3;int c = -1;
     Button btn ;    Button btn1 ;    Button btn2 ;    Button btn3 ;    Button btn4 ;    Button btn5;    Button btn6 ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,33 +34,48 @@ public class MainActivity extends AppCompatActivity {
     public void minus(View view)
     {
         sign = "-";
+        if (c==-1){
         st=ed.getText().toString();
-        number1 = Double.parseDouble(st);
+        number1 = Double.parseDouble(st);}
+        if(c == 0)
+        {make();}
         ed.getText().clear();
-
+        c=0;
     }
 
 
     public void add(View view)
     {
         sign = "+";
+        if(c==-1){
         st=ed.getText().toString();
-        number1 = Double.parseDouble(st);
+        number1 = Double.parseDouble(st);}
+        if(c == 0)
+        {make();}
         ed.getText().clear();
+        c=0;
     }
 
     public void divide(View view) {
         sign = "/";
-        st=ed.getText().toString();
-        number1 = Double.parseDouble(st);
+        if(c==-1){
+            st=ed.getText().toString();
+            number1 = Double.parseDouble(st);}
+        if(c == 0)
+        {make();}
         ed.getText().clear();
+        c=0;
     }
 
     public void multip(View view) {
         sign = "*";
-        st=ed.getText().toString();
-        number1 = Double.parseDouble(st);
+        if(c==-1){
+            st=ed.getText().toString();
+            number1 = Double.parseDouble(st);}
+        if(c == 0)
+        {make();}
         ed.getText().clear();
+        c=0;
     }
 
     public void end(View view) {
@@ -81,7 +96,9 @@ public class MainActivity extends AppCompatActivity {
             else{
             number1 = number1 / number2;
             st =""+number1;}}
-        ed.setText(st);
+        if(c==0)
+         ed.setText(st);
+        ed.getText().clear();
         s= st;
     }
 
@@ -98,6 +115,28 @@ public class MainActivity extends AppCompatActivity {
         number1=0;
         number2=0;
         s="0";
+        c = -1;
         sign="";
+    }
+    public void make(){
+        if(ed.getText().toString().equals("")==false){
+        String st = ed.getText().toString();
+        number2=Double.parseDouble(st);
+        if(sign.equals("+")){
+            number1 = number1+number2;
+            st =""+number1;}
+        if(sign.equals("-")){
+            number1 = number1-number2;
+            st =""+number1;}
+        if(sign.equals("*")){
+            number1 = number1*number2;
+            st =""+number1;}
+        if(sign.equals("/")) {
+            if (number1==0)
+                st=" mistake";
+            else{
+                number1 = number1 / number2;
+                st =""+number1;}}}
+
     }
 }
